@@ -38,6 +38,7 @@ export function buttonResponsiveStyle({ height } : {| height? : ?number |}) : st
                 }
 
                 .${ CLASS.BUTTON } > .${ CLASS.BUTTON_LABEL } {
+                    margin: 0px ${ perc(buttonHeight - (perc(buttonHeight, 35) + 5), 50) }px;
                     height: ${ perc(buttonHeight, 35) + 5 }px;
                     max-height: ${ perc(buttonHeight, 60) }px;
                     min-height: ${ perc(buttonHeight, 40) }px;
@@ -81,8 +82,8 @@ export function buttonResponsiveStyle({ height } : {| height? : ?number |}) : st
                     height: 100%;
                     right: 0;
                     top: 0;
-                    width: ${ buttonHeight }px;
-                    border-left: 1px solid rgba(100, 100, 100, 0.1);
+                    width: ${ buttonHeight + 2 }px;
+                    border-left: 2px solid white;
                 }
 
                 .${ CLASS.MENU_TOGGLE }:hover {

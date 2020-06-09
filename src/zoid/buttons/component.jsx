@@ -8,10 +8,10 @@ import { getLogger, getLocale, getClientID, getEnv, getIntent, getCommit, getVau
 import { rememberFunding, getRememberedFunding, getRefinedFundingEligibility } from '@paypal/funding-components/src';
 import { ZalgoPromise } from 'zalgo-promise/src';
 import { create, type ZoidComponent } from 'zoid/src';
-import { uniqueID, values, memoize, noop, identity } from 'belter/src';
+import { uniqueID, values, memoize, noop, identity, isIE } from 'belter/src';
 import { FUNDING, QUERY_BOOL, CARD } from '@paypal/sdk-constants/src';
 import { node, dom } from 'jsx-pragmatic/src';
-import { collectRiskData } from '@paypal/risk-data-collector/src';
+import { collectRiskData, persistRiskData } from '@paypal/risk-data-collector/src';
 
 import { getSessionID } from '../../lib';
 import { normalizeButtonStyle, type ButtonProps } from '../../ui/buttons/props';
@@ -51,7 +51,8 @@ export const getButtonsComponent = memoize(() : ZoidComponent<ButtonProps> => {
         attributes: {
             iframe: {
                 allowpaymentrequest: 'allowpaymentrequest',
-                scrolling:           'no'
+                scrolling:           'no',
+                title:               'paypal'
             }
         },
 
@@ -360,17 +361,20 @@ export const getButtonsComponent = memoize(() : ZoidComponent<ButtonProps> => {
 
             clientMetadataID: {
                 type:       'string',
+                required:   false,
                 value:      getClientMetadataID,
                 queryParam: true
             },
 
             riskData: {
                 type:  'object',
-                value: () => {
-                    if (getUserIDToken()) {
+                value: ({ props }) => {
+                    const clientMetadataID = getClientMetadataID();
+
+                    if (props.userIDToken && clientMetadataID && !isIE()) {
                         try {
                             return collectRiskData({
-                                clientMetadataID: getClientMetadataID(),
+                                clientMetadataID,
                                 appSourceID:      'SMART_PAYMENT_BUTTONS'
                             });
                         } catch (err) {
@@ -381,6 +385,11 @@ export const getButtonsComponent = memoize(() : ZoidComponent<ButtonProps> => {
                 queryParam:    true,
                 required:      false,
                 serialization: 'base64'
+            },
+
+            persistRiskData: {
+                type:  'function',
+                value: () => persistRiskData
             },
 
             debug: {

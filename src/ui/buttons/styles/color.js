@@ -1,6 +1,8 @@
 /* @flow */
 
-import { BUTTON_COLOR, CLASS, TEXT_COLOR } from '../../../constants';
+import { FUNDING } from '@paypal/sdk-constants/src';
+
+import { BUTTON_COLOR, CLASS, TEXT_COLOR, ATTRIBUTE } from '../../../constants';
 
 export const buttonColorStyle = `
 
@@ -13,6 +15,15 @@ export const buttonColorStyle = `
         color: #fff;
     }
 
+    .${ CLASS.BUTTON }.${ CLASS.TEXT_COLOR }-${ TEXT_COLOR.BLACK } .${ CLASS.SPINNER } {
+        border: 3px solid rgba(100, 100, 100, .2);
+        border-top-color: rgba(33, 128, 192, 0.8);
+    }
+
+    .${ CLASS.BUTTON }.${ CLASS.TEXT_COLOR }-${ TEXT_COLOR.WHITE } .${ CLASS.SPINNER } {
+        border: 3px solid rgba(200, 200, 200, 0.2);
+        border-top-color: rgba(255, 255, 255, .85);
+    }
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.GOLD } {
         background: #ffc439;
@@ -24,13 +35,26 @@ export const buttonColorStyle = `
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.GOLD }:focus {
         outline: none;
-        box-shadow: 0px 0px 1px 3px #0c67ff inset;
+    }
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.GOLD }:focus::after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+        border: 0.125rem solid #009cde;
+        border-radius: inherit;
+        box-shadow: 0 0 0 0.5rem #0000a6;
+        pointer-events: none;
     }
 
 
-
-
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.BLUE } {
+        background: #0070ba;
+    }
+
+    .${ CLASS.BUTTON }[${ ATTRIBUTE.FUNDING_SOURCE }=${ FUNDING.VENMO }].${ CLASS.COLOR }-${ BUTTON_COLOR.BLUE } {
         background: #009cde;
     }
 
@@ -40,10 +64,19 @@ export const buttonColorStyle = `
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.BLUE }:focus {
         outline: none;
-        box-shadow: 0px 0px 1px 3px #0c67ff inset;
     }
-
-
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.BLUE }:focus::after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+        border: 0.125rem solid #0000a6;
+        border-radius: inherit;
+        box-shadow: 0 0 0 0.5rem #009cde;
+        pointer-events: none;
+    }
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.SILVER } {
         background: #eee;
@@ -55,10 +88,19 @@ export const buttonColorStyle = `
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.SILVER }:focus {
         outline: none;
-        box-shadow: 0px 0px 1px 3px #0c67ff inset;
     }
-
-
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.SILVER }:focus::after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+        border: 0.125rem solid #009cde;
+        border-radius: inherit;
+        box-shadow: 0 0 0 0.5rem #0000a6;
+        pointer-events: none;
+    }
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.DARKBLUE } {
         background: #003087;
@@ -70,7 +112,18 @@ export const buttonColorStyle = `
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.DARKBLUE }:focus {
         outline: none;
-        box-shadow: 0px 0px 1px 3px #0c67ff inset;
+    }
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.DARKBLUE }:focus::after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+        border: 0.125rem solid #009cde;
+        border-radius: inherit;
+        box-shadow: 0 0 0 0.5rem #0000a6;
+        pointer-events: none;
     }
 
 
@@ -85,10 +138,19 @@ export const buttonColorStyle = `
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.BLACK }:focus {
         outline: none;
-        box-shadow: 0px 0px 1px 3px #0c67ff inset;
     }
-
-
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.BLACK }:focus::after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+        border: 0.125rem solid #009cde;
+        border-radius: inherit;
+        box-shadow: 0 0 0 0.5rem #0000a6;
+        pointer-events: none;
+    }
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.WHITE } {
         background: #fff;
@@ -101,7 +163,18 @@ export const buttonColorStyle = `
 
     .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.WHITE }:focus {
         outline: none;
-        box-shadow: 0px 0px 1px 3px #0c67ff inset;
+    }
+    .${ CLASS.BUTTON }.${ CLASS.COLOR }-${ BUTTON_COLOR.WHITE }:focus::after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+        border: 0.125rem solid #009cde;
+        border-radius: inherit;
+        box-shadow: 0 0 0 0.5rem #0000a6;
+        pointer-events: none;
     }
 
 
